@@ -2,6 +2,15 @@ import os
 from PIL import Image 
 from sentence_transformers import SentenceTransformer 
 
+def get_common_google_colab():  
+    res = [
+        "from google.colab import auth", 
+        "auth.authenticate_user()", 
+        
+    ] 
+
+    return res 
+
 def get_image_name_list(images_dir):
     file_list = os.listdir(images_dir)
     res = []
