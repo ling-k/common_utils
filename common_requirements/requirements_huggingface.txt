@@ -1,0 +1,15 @@
+sentence-transformers
+transformers
+datasets
+pandas
+torch
+evaluate
+tensorflow
+tokenizers
+torchvision
+wandb
+scikit-learn
+matplotlib
+plotly
+openai
+fuzzywuzzy
