@@ -6,7 +6,7 @@ def get_common_google_colab():
     res = [
         "from google.colab import auth", 
         "auth.authenticate_user()", 
-        
+
     ] 
 
     return res 
@@ -22,6 +22,22 @@ def get_image_name_list(images_dir):
             res.append(file)
     return res
 
+
+def get_zip_from_gs(gs_path, target_folder_path="data_unzip_path"): 
+    temp_data_path = "temp_data.zip"  
+    os.system(f"gsutil cp {gs_path} ./{temp_data_path}")
+    os.system(f"unzip ./{temp_data_path} -d ./{target_folder_path}") 
+    target_subfolder_path="cur_data_path"
+    data_path_local = os.path.join(target_folder_path, target_subfolder_path)    
+
+    # print("removing the previous folder: ", data_path_local) 
+    os.system(f"rm -rf {data_path_local}") 
+    # print("rename the model file name to our sepcified. ")
+    os.system(f"mv {target_folder_path}/* {data_path_local}") 
+    # print("removing the zip file ")
+    os.system(f"rm -rf {temp_data_path}")   
+
+    return data_path_local
 
 
 def load_image_list(image_name_list):
